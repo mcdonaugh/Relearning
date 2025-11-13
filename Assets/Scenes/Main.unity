@@ -167,6 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bafc9102eda3c45d49664edd2216c0c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _age: 134
+  _playerCurrentHealth: 30
+  _playerMaxHealth: 50
+  _theDamage: 5
+  _theHeal: 5
+  _diceSides: 6
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
