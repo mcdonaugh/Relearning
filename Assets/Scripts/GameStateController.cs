@@ -32,34 +32,10 @@ public class GameStateController : MonoBehaviour
         GenerateAmmo();
     }
 
-    //generate full pool
-    //reduce ammo on each space
-    //when projectile count hits < 1, fill
-
-    private void Shoot()
-    {
-       for(int i = 0; i < _ammoPool.Length; i++)
-            {
-                if(!_ammoPool[i].activeInHierarchy && _currentAmmoCount > 0)
-                {
-                    _ammoPool[i].transform.position = _theGuy.transform.position;
-                    _ammoPool[i].transform.rotation = _theGuy.transform.rotation;
-                    _ammoPool[i].SetActive(true);
-                    _currentAmmoCount--;
-                    Debug.Log($"{_currentAmmoCount}");
-                    break;  
-                }
-
-                Debug.Log("You are out of ammo!");
-
-        }
-    }
 
     private void GenerateAmmo()
     {
-        Debug.Log("This Method Was Called");
-        Debug.Log($"{_ammoPool.Length}");
-        Debug.Log($"{_currentAmmoCount}");
+
 
         for(int i = 0; i < _ammoPool.Length; i++)
         {
@@ -75,9 +51,29 @@ public class GameStateController : MonoBehaviour
         Debug.Log($"{_currentAmmoCount}");
     }
 
+    private void Shoot()
+    {
+       for(int i = 0; i < _ammoPool.Length; i++)
+            {
+                if(!_ammoPool[i].activeInHierarchy && _currentAmmoCount > 0)
+                {
+                    _ammoPool[i].transform.position = _theGuy.transform.position;
+                    _ammoPool[i].transform.rotation = _theGuy.transform.rotation;
+                    _ammoPool[i].SetActive(true);
+                    _currentAmmoCount--;
+                    Debug.Log($"{_currentAmmoCount}");
+                    break;  
+                }
+                if(_currentAmmoCount <= 1)
+                {
+                    Reload();
+                    Debug.Log($"Reloading to {_currentAmmoCount}!"); 
+                }    
+        }
+    }
     private void Reload()
     {
-        _currentAmmoCount = _ammoPool.Length;
+        _currentAmmoCount = _ammoPool.Length + 1;
         Debug.Log($"Reloading to {_currentAmmoCount}!");
     }
 
